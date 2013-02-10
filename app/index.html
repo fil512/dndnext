@@ -85,8 +85,9 @@
 					<form name="subraceForm" ng-show="step >= 2">
 						Subrace:
 						<span ng-show="step > 2">{{subrace}}</span>
-						<select ng-model="subrace" class="edit">
+						<select ng-model="subrace">
 							<option value="" disabled selected required>Choose Subrace</option>
+							<option ng-repeat="subrace in subraces" value="{{subrace}}">{{subrace}}</option>
 						</select>
 						<button class="btn btn-success" ng-click="next()" ng-show="subraceForm.$valid && step==1">
 							<i class="icon-forward icon-white"></i> Next

@@ -1,7 +1,6 @@
 'use strict';
 
 
-
 function CharCtrl($scope) {
 	var stepTitle = [
 		"Determine Ability Scores",
@@ -16,6 +15,14 @@ function CharCtrl($scope) {
 	Desc["race"],
 	Desc["subrace"]
 	];
+	
+	var subraces = {
+		"dwarf" : ["hill dwarf", "mountain dwarf"],
+		"elf" : ["high elf", "wood elf"],
+		"halfling" : ["lightfoot", "stout"],
+		"human" : ["human"]
+		
+	};
 	
 	$scope.step=0;
 	
@@ -48,5 +55,6 @@ function CharCtrl($scope) {
 	
 	$scope.changeRace = function() {
 		$scope.desc = Desc[$scope.race];
+		$scope.subraces = subraces[$scope.race];
 	}
 }
