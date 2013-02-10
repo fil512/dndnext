@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>My AngularJS App</title>
-		<link rel="stylesheet" href="dndnext.css"/>
+		<link rel="stylesheet" href="css/dndnext.css"/>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
 		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 		<script src="lib/angular/angular.js"></script>
@@ -11,13 +11,13 @@
 
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div ng-controller="CharCtrl" class="container-fluid">
 		<header>
 			<a id="start-over" class="dndbutton">Start Over</a>
 			<h1>DND Next Character Generator</h1>
-			<h2 id="step">Step</h2>
+			<h2>{{step}}. {{stepDesc()}}</h2>
 		</header>
-		<div controller="CharCtrl" class="row-fluid">
+		<div class="row-fluid">
 
 			<div class="span3">
 
