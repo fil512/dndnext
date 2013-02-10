@@ -13,20 +13,18 @@
 
 	</head>
 	<body>
-		<header>
-			<h3>DND Next Character Generator</h3>
-		</header>
-		<div id="dndnext" ng-controller="CharCtrl" class="container-fluid" ng-click="clicky($event)">
-			<button class="btn btn-success pull-right" ng-click="next()">
+			<P class="lead">DND Next Character Generator</p>
+		<div id="dndnext" ng-controller="CharCtrl" class="container-fluid">
+			<P class="lead">{{step+1}}. {{stepTitle()}}
+			<button class="btn btn-success" ng-click="next()">
 				<i class="icon-forward icon-white"></i> Next
 			</button>
-
-			<h4>{{step+1}}. {{stepDesc()}}</h4>
+</p>
 			<div class="row-fluid">
 
 				<div class="span3">
 
-					<section id="attributes" class="validation-colours">
+					<div id="attributes" class="validation-colours"  ng-click="clickAttr($event)">
 						<table>
 							<tr>
 								<td><label>Strength</label></td><td>
@@ -63,19 +61,19 @@
 							<i class="icon-plus-sign icon-white"></i> Roll for me
 						</button>
 
-					</section>
+					</div>
 				</div>
 				<div class="span3">
 					<section ng-show="step >= 1">
-						<label>Race: </label>
-						<select ng-model="race" class="edit">
+						Race:
+						<span ng-show="step > 1">{{race}}</span>
+						<select ng-model="race" ng-change="changeRace()" ng-show="step == 1">
 							<option value="" disabled selected>Choose Race</option>
 							<option value="dwarf">Dwarf</option>
 							<option value="elf">Elf</option>
 							<option value="halfling">Halfling</option>
 							<option value="human">Human</option>
 						</select>
-						<label class="view">{{race}}</label>
 					</section>
 					<section ng-show="step >= 2">
 						<label>Subrace: </label>

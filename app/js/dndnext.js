@@ -3,18 +3,24 @@
 
 
 function CharCtrl($scope) {
-	var stateDesc = {
-		0 : "Determine Ability Scores",
-		1 : "Choose a Race",
-		2 : "Choose a Subrace",
-		3 : "Choose a Class",
-		4 : "Choose a Subclass",
-	}
+	var stepTitle = [
+		"Determine Ability Scores",
+		"Choose a Race",
+		"Choose a Subrace",
+		"Choose a Class",
+		"Choose a Subclass",
+	];
+	
+	var stepDesc = [
+	Desc["attr"],
+	Desc["race"],
+	Desc["subrace"]
+	];
 	
 	$scope.step=0;
 	
-	$scope.stepDesc = function() {
-		return stateDesc[$scope.step];
+	$scope.stepTitle = function() {
+		return stepTitle[$scope.step];
 	}
 	
 	$scope.roll = function() {
@@ -32,10 +38,15 @@ function CharCtrl($scope) {
 	
 	$scope.next = function() {
 		++$scope.step;
+		$scope.desc = stepDesc[$scope.step];
 	} 
 	
-	$scope.clicky = function(event) {
+	$scope.clickAttr = function(event) {
 		var field = event.target.getAttribute("ng-model");
 		$scope.desc = Desc[field];
+	}
+	
+	$scope.changeRace = function() {
+		$scope.desc = Desc[$scope.race];
 	}
 }
