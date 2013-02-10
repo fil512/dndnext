@@ -8,91 +8,97 @@
 		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 		<script src="lib/angular/angular.js"></script>
 		<script src="js/dndnext.js"></script>
+		<script src="js/dice.js"></script>
 
 	</head>
 	<body>
-		<div ng-controller="CharCtrl" class="container-fluid">
 		<header>
-			<a id="start-over" class="dndbutton">Start Over</a>
 			<h1>DND Next Character Generator</h1>
-			<h2>{{step}}. {{stepDesc()}}</h2>
 		</header>
-		<div class="row-fluid">
+		<div id="dndnext" ng-controller="CharCtrl" class="container-fluid">
+			<button class="btn btn-success pull-right" ng-click="next()">
+				<i class="icon-forward"></i> Next
+			</button>
 
-			<div class="span3">
+			<h2>{{step+1}}. {{stepDesc()}}</h2>
+			<div class="row-fluid">
 
-				<section id="attributes" class="wizard validation-colours">
-					<table>
-						<tr>
-							<td><label>Strength</label></td><td>
-							<input ng-model="str" type="number" min="3" max="18" class="edit"/>
-							<label class="view">{{str}}</label></td>
-						</tr>
-						<tr>
-							<td><label>Dexterity</label></td><td>
-							<input ng-model="dex" type="number" min="3" max="18" class="edit"/>
-							<label class="view">{{dex}}</label></td>
-						</tr>
-						<tr>
-							<td><label>Constitution</label></td><td>
-							<input ng-model="con" type="number" min="3" max="18" class="edit"/>
-							<label class="view">{{con}}</label></td>
-						</tr>
-						<tr>
-							<td><label>Intelligence</label></td><td>
-							<input ng-model="int" type="number" min="3" max="18" class="edit"/>
-							<label class="view">{{int}}</label></td>
-						</tr>
-						<tr>
-							<td><label>Wisdom</label></td><td>
-							<input ng-model="wis" type="number" min="3" max="18" class="edit"/>
-							<label class="view">{{wis}}</label></td>
-						</tr>
-						<tr>
-							<td><label>Charisma</label></td><td>
-							<input ng-model="cha" type="number" min="3" max="18" class="edit"/>
-							<label class="view">{{cha}}</label></td>
-						</tr>
-					</table>
+				<div class="span3">
 
-				</section>
+					<section id="attributes" class="validation-colours">
+						<table>
+							<tr>
+								<td><label>Strength</label></td><td>
+								<input ng-model="str" type="number" min="3" max="18" ng-show="step==0"/>
+								<label ng-show="step > 0">{{str}}</label></td>
+							</tr>
+							<tr>
+								<td><label>Dexterity</label></td><td>
+								<input ng-model="dex" type="number" min="3" max="18" ng-show="step==0"/>
+								<label ng-show="step > 0">{{dex}}</label></td>
+							</tr>
+							<tr>
+								<td><label>Constitution</label></td><td>
+								<input ng-model="con" type="number" min="3" max="18" ng-show="step==0"/>
+								<label ng-show="step > 0">{{con}}</label></td>
+							</tr>
+							<tr>
+								<td><label>Intelligence</label></td><td>
+								<input ng-model="int" type="number" min="3" max="18" ng-show="step==0"/>
+								<label ng-show="step > 0">{{int}}</label></td>
+							</tr>
+							<tr>
+								<td><label>Wisdom</label></td><td>
+								<input ng-model="wis" type="number" min="3" max="18" ng-show="step==0"/>
+								<label ng-show="step > 0">{{wis}}</label></td>
+							</tr>
+							<tr>
+								<td><label>Charisma</label></td><td>
+								<input ng-model="cha" type="number" min="3" max="18" ng-show="step==0"/>
+								<label ng-show="step > 0">{{cha}}</label></td>
+							</tr>
+						</table>
+						<button class="btn btn-info" ng-click="roll()" ng-show="step==0">
+							<i class="icon-plus-sign"></i> Roll for me
+						</button>
+
+					</section>
+				</div>
+				<div class="span3">
+					<section ng-show="step >= 1">
+						<label>Race: </label>
+						<select ng-model="race" class="edit">
+							<option value="" disabled selected>Choose Race</option>
+							<option value="dwarf">Dwarf</option>
+							<option value="elf">Elf</option>
+							<option value="halfling">Halfling</option>
+							<option value="human">Human</option>
+						</select>
+						<label class="view">{{race}}</label>
+					</section>
+					<section ng-show="step >= 2">
+						<label>Subrace: </label>
+						<select ng-model="subrace" class="edit">
+							<option value="" disabled selected>Choose Subrace</option>
+						</select>
+						<label class="view">{{subrace}}</label>
+					</section>
+				</div>
+				<div class="span3">
+					<section id="desc">
+						<i>Description</i>
+					</section>
+				</div>
 			</div>
-			<div class="span3">
-				<section class="wizard">
-					<label>Race: </label>
-					<select id="race" class="edit">
-						<option value="" disabled selected>Choose Race</option>
-						<option value="dwarf">Dwarf</option>
-						<option value="elf">Elf</option>
-						<option value="halfling">Halfling</option>
-						<option value="human">Human</option>
-					</select>
-					<label class="view">Race</label>
-				</section>
-				<section class="wizard">
-					<label>Subrace: </label>
-					<select id="subrace" class="edit">
-						<option value="" disabled selected>Choose Subrace</option>
-					</select>
-					<label class="view">Subrace</label>
-				</section>
-			</div>
-			<div class="span3">
-				<section id="desc">
-					<i>Description</i>
-				</section>
-			</div>
+			<button class="btn" ng-click="reset()">
+				<i class="icon-repeat"></i> Start Over
+			</button>
 		</div>
-		<section>
-				<a id="roll-for-me" class="dndbutton edit">Roll for me</a>
-				<a id="next" class="dndbutton edit">Next</a>
-</section>
 
 		<footer>
 			Created by
 			<br />
 			<a href="http://kenstevens.com/">Ken Stevens</a>.
-			</footer>
-			</div>
+		</footer>
 	</body>
 </html>
