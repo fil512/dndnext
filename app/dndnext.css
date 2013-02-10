@@ -1,0 +1,27 @@
+    .validation-colours input.ng-invalid.ng-dirty {
+      background-color: #FA787E;
+    }
+  
+    .validation-colours input.ng-valid.ng-dirty {
+      background-color: #78FA89;
+    }
+    
+table.main {
+	width: 560px;
+}
+
+td.left {
+	width: 140px;
+	vertical-align: top;
+}
+
+td.middle {
+	width: 200px;
+	vertical-align: top;
+	float: left;
+}
+
+td.right {
+	vertical-align: top;
+	height: 450px;
+}

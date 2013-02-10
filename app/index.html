@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app>
+	<head>
+		<meta charset="utf-8">
+		<title>My AngularJS App</title>
+		<link rel="stylesheet" href="dndnext.css"/>
+		<link rel="stylesheet" href="bootstrap/css/app.css"/>
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	</head>
+	<body>
+		<div controller="CharCtrl">
+
+			<header>
+				<a id="start-over" class="dndbutton">Start Over</a>
+				<h1>DND Next Character Generator</h1>
+				<h2 id="step">Step</h2>
+			</header>
+
+			<div id="instructions">
+				For each ability below, roll four 6-sided dice, total the highest three rolls, and enter it in the box.
+			</div>
+			<table id="main" class="main validation-colours">
+				<tr>
+					<td class="left">
+					<section class="wizard">
+						<div id="abilities">
+							<table>
+								<tr>
+									<td>Strength</td><td>
+									<input ng-model="str" type="number" min="3" max="18" class="edit"/>
+									<label class="view">{{str}}</label></td>
+								</tr>
+								<tr>
+									<td>Dexterity</td><td>
+									<input ng-model="dex" type="number" min="3" max="18" class="edit"/>
+									<label class="view">{{dex}}</label></td>
+								</tr>
+								<tr>
+									<td>Constitution</td><td>
+									<input ng-model="con" type="number" min="3" max="18" class="edit"/>
+									<label class="view">{{con}}</label></td>
+								</tr>
+								<tr>
+									<td>Intelligence</td><td>
+									<input ng-model="int" type="number" min="3" max="18" class="edit"/>
+									<label class="view">{{int}}</label></td>
+								</tr>
+								<tr>
+									<td>Wisdom</td><td>
+									<input ng-model="wis" type="number" min="3" max="18" class="edit"/>
+									<label class="view">{{wis}}</label></td>
+								</tr>
+								<tr>
+									<td>Charisma</td><td>
+									<input ng-model="cha" type="number" min="3" max="18" class="edit"/>
+									<label class="view">{{cha}}</label></td>
+								</tr>
+							</table>
+						</div>
+
+					</section></td>
+					<td class="middle">
+					<section class="wizard">
+						<label>Race: </label>
+						<select id="race" class="edit">
+							<option value="" disabled selected>Choose Race</option>
+							<option value="dwarf">Dwarf</option>
+							<option value="elf">Elf</option>
+							<option value="halfling">Halfling</option>
+							<option value="human">Human</option>
+						</select>
+						<label class="view">Race</label>
+					</section>
+					<section class="wizard">
+						<label>Subrace: </label>
+						<select id="subrace" class="edit">
+							<option value="" disabled selected>Choose Subrace</option>
+						</select>
+						<label class="view">Subrace</label>
+					</section></td>
+					<td class="right">
+					<section id="desc">
+						<i>Description</i>
+					</section></td>
+
+				</tr>
+			</table>
+			<footer>
+				<a id="roll-for-me" class="dndbutton edit">Roll for me</a>
+				<a id="next" class="dndbutton edit">Next</a>
+			</footer>
+
+		</div>
+
+		<div id="credits">
+			Created by
+			<br />
+			<a href="http://kenstevens.com/">Ken Stevens</a>.
+		</div>
+
+		<script src="lib/angular/angular.js"></script>
+		<script src="js/dndnext.js"></script>
+	</body>
+</html>
