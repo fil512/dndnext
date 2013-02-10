@@ -9,18 +9,19 @@
 		<script src="lib/angular/angular.js"></script>
 		<script src="js/dndnext.js"></script>
 		<script src="js/dice.js"></script>
+		<script src="js/wotc.js"></script>
 
 	</head>
 	<body>
 		<header>
-			<h1>DND Next Character Generator</h1>
+			<h3>DND Next Character Generator</h3>
 		</header>
-		<div id="dndnext" ng-controller="CharCtrl" class="container-fluid">
+		<div id="dndnext" ng-controller="CharCtrl" class="container-fluid" ng-click="clicky($event)">
 			<button class="btn btn-success pull-right" ng-click="next()">
 				<i class="icon-forward icon-white"></i> Next
 			</button>
 
-			<h2>{{step+1}}. {{stepDesc()}}</h2>
+			<h4>{{step+1}}. {{stepDesc()}}</h4>
 			<div class="row-fluid">
 
 				<div class="span3">
@@ -85,9 +86,7 @@
 					</section>
 				</div>
 				<div class="span3">
-					<section id="desc">
-						<i>Description</i>
-					</section>
+					<div ng-bind-html-unsafe="desc"></div>
 				</div>
 			</div>
 			<button class="btn" ng-click="reset()">

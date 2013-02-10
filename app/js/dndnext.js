@@ -33,4 +33,9 @@ function CharCtrl($scope) {
 	$scope.next = function() {
 		++$scope.step;
 	} 
+	
+	$scope.clicky = function(event) {
+		var field = event.target.getAttribute("ng-model");
+		$scope.desc = Desc[field];
+	}
 }
