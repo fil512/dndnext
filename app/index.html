@@ -13,75 +13,85 @@
 
 	</head>
 	<body>
-			<P class="lead">DND Next Character Generator</p>
+		<P class="lead">
+			DND Next Character Generator
+		</p>
 		<div id="dndnext" ng-controller="CharCtrl" class="container-fluid">
-			<P class="lead">{{step+1}}. {{stepTitle()}}
-			<button class="btn btn-success" ng-click="next()">
-				<i class="icon-forward icon-white"></i> Next
-			</button>
-</p>
+			<P class="lead">
+				{{step+1}}. {{stepTitle()}}
+			</p>
 			<div class="row-fluid">
 
 				<div class="span3">
 
-					<div id="attributes" class="validation-colours"  ng-click="clickAttr($event)">
+					<form name="attrForm" id="attributes" class="validation-colours"  ng-click="clickAttr($event)">
 						<table>
 							<tr>
 								<td><label>Strength</label></td><td>
-								<input ng-model="str" type="number" min="3" max="18" ng-show="step==0"/>
+								<input ng-model="str" type="number" min="3" max="18" required ng-show="step==0"/>
 								<label ng-show="step > 0">{{str}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Dexterity</label></td><td>
-								<input ng-model="dex" type="number" min="3" max="18" ng-show="step==0"/>
+								<input ng-model="dex" type="number" min="3" max="18" required ng-show="step==0"/>
 								<label ng-show="step > 0">{{dex}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Constitution</label></td><td>
-								<input ng-model="con" type="number" min="3" max="18" ng-show="step==0"/>
+								<input ng-model="con" type="number" min="3" max="18" required ng-show="step==0"/>
 								<label ng-show="step > 0">{{con}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Intelligence</label></td><td>
-								<input ng-model="int" type="number" min="3" max="18" ng-show="step==0"/>
+								<input ng-model="int" type="number" min="3" max="18" required ng-show="step==0"/>
 								<label ng-show="step > 0">{{int}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Wisdom</label></td><td>
-								<input ng-model="wis" type="number" min="3" max="18" ng-show="step==0"/>
+								<input ng-model="wis" type="number" min="3" max="18" required ng-show="step==0"/>
 								<label ng-show="step > 0">{{wis}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Charisma</label></td><td>
-								<input ng-model="cha" type="number" min="3" max="18" ng-show="step==0"/>
+								<input ng-model="cha" type="number" min="3" max="18" required ng-show="step==0"/>
 								<label ng-show="step > 0">{{cha}}</label></td>
 							</tr>
 						</table>
 						<button class="btn btn-info" ng-click="roll()" ng-show="step==0">
 							<i class="icon-plus-sign icon-white"></i> Roll for me
 						</button>
+						<button class="btn btn-success" ng-click="next()" ng-show="attrForm.$valid && step==0">
+							<i class="icon-forward icon-white"></i> Next
+						</button>
 
-					</div>
 				</div>
+				</form>
 				<div class="span3">
-					<section ng-show="step >= 1">
+					<form name="raceForm" ng-show="step >= 1">
 						Race:
 						<span ng-show="step > 1">{{race}}</span>
-						<select ng-model="race" ng-change="changeRace()" ng-show="step == 1">
+						<select ng-model="race" ng-change="changeRace()" required ng-show="step == 1">
 							<option value="" disabled selected>Choose Race</option>
 							<option value="dwarf">Dwarf</option>
 							<option value="elf">Elf</option>
 							<option value="halfling">Halfling</option>
 							<option value="human">Human</option>
 						</select>
-					</section>
-					<section ng-show="step >= 2">
-						<label>Subrace: </label>
+						<button class="btn btn-success" ng-click="next()" ng-show="raceForm.$valid && step==1">
+							<i class="icon-forward icon-white"></i> Next
+						</button>
+					</form>
+
+					<form name="subraceForm" ng-show="step >= 2">
+						Subrace:
+						<span ng-show="step > 2">{{subrace}}</span>
 						<select ng-model="subrace" class="edit">
-							<option value="" disabled selected>Choose Subrace</option>
+							<option value="" disabled selected required>Choose Subrace</option>
 						</select>
-						<label class="view">{{subrace}}</label>
-					</section>
+						<button class="btn btn-success" ng-click="next()" ng-show="subraceForm.$valid && step==1">
+							<i class="icon-forward icon-white"></i> Next
+						</button>
+					</form>
 				</div>
 				<div class="span3">
 					<div ng-bind-html-unsafe="desc"></div>
