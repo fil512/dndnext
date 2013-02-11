@@ -25,6 +25,9 @@
 				<div class="span3">
 
 					<form name="attrForm" id="attributes" class="validation-colours"  ng-click="clickAttr($event)">
+						<div ng-show="step==0">
+							For each ability below, roll four 6-sided dice, total the highest three rolls, and enter it in the box.
+						</div>
 						<table>
 							<tr>
 								<td><label>Strength</label></td><td>
@@ -57,8 +60,8 @@
 								<label ng-show="step > 0">{{cha}}</label></td>
 							</tr>
 						</table>
-						<button class="btn btn-info" ng-click="roll()" ng-show="step==0">
-							<i class="icon-plus-sign icon-white"></i> Roll for me
+						<button class="btn" ng-click="roll()" ng-show="attrForm.$invalid && step==0">
+							<i class="icon-plus-sign"></i> Roll for me
 						</button>
 						<button class="btn btn-success" ng-click="next()" ng-show="attrForm.$valid && step==0">
 							<i class="icon-forward icon-white"></i> Next

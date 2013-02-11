@@ -24,7 +24,6 @@ function CharCtrl($scope) {
 		
 	};
 	
-	$scope.step=0;
 	
 	$scope.stepTitle = function() {
 		return stepTitle[$scope.step];
@@ -41,6 +40,12 @@ function CharCtrl($scope) {
 	
 	$scope.reset = function() {
 		$scope.step=0;	
+		$scope.str = "";
+		$scope.dex = "";
+		$scope.con = "";
+		$scope.int = "";
+		$scope.wis = "";
+		$scope.cha = "";
 	}
 	
 	$scope.next = function() {
@@ -57,4 +62,6 @@ function CharCtrl($scope) {
 		$scope.desc = Desc[$scope.race];
 		$scope.subraces = subraces[$scope.race];
 	}
+	
+	$scope.reset();
 }
