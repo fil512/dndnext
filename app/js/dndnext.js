@@ -16,12 +16,59 @@ function CharCtrl($scope) {
 	Desc["subrace"]
 	];
 	
+	$scope.size = {
+		"dwarf" : "medium",
+		"elf" : "medium",
+		"halfling" : "small",
+		"human" : "medium"		
+	};
+	
+	$scope.speed = {
+		"dwarf" : 25,
+		"elf" : 30,
+		"halfling" : 25,
+		"human" : 30		
+	};
+	
+	$scope.race_wis = {
+		"dwarf" :1
+	};
+	
+	$scope.race_int = {
+		"elf" :1
+	};
+	
+	$scope.race_features = {
+		"dwarf" : ["low-light vision", "dwarven resilience", "stonecunning"],
+		"elf" : ["low-light vision", "free spirit", "trance"],
+		"halfling" : ["lucky", "halfling nimbleness"],
+		"human" : []		
+	};
+	$scope.languages = {
+
+		"dwarf" : ["common", "dwarvish"],
+		"elf" : ["common", "elvish"],
+		"halfling" : ["common", "halfling"],
+		"human" : ["common"]		
+	};
+	
+	$scope.race_skills = {
+		"dwarf" : ["Knowledge	(dungeoneering)"],
+		"elf" : ["Listen", "Spot"],
+		"halfling" : [],
+		"human" : []
+	};
+	
+	// TODO race weapon training
+	// TODO race armor mastery
+	// TODO elf cantrip
+	// TODO human attributes
+	
 	var subraces = {
 		"dwarf" : ["hill dwarf", "mountain dwarf"],
 		"elf" : ["high elf", "wood elf"],
 		"halfling" : ["lightfoot", "stout"],
 		"human" : ["human"]
-		
 	};
 	
 	
@@ -36,6 +83,8 @@ function CharCtrl($scope) {
 		$scope.int = Dice.roll();
 		$scope.wis = Dice.roll();
 		$scope.cha = Dice.roll();
+		$scope.race = "";
+		$scope.subrace = "";
 	}
 	
 	$scope.reset = function() {

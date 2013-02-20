@@ -2,7 +2,7 @@
 <html lang="en" ng-app>
 	<head>
 		<meta charset="utf-8">
-		<title>My AngularJS App</title>
+		<title>DND Next Character Generator</title>
 		<link rel="stylesheet" href="css/dndnext.css"/>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
 		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 							<tr>
 								<td><label>Strength</label></td><td>
 								<input ng-model="str" type="number" min="3" max="18" required ng-show="step==0"/>
-								<label ng-show="step > 0">{{str}}</label></td>
+								<label ng-show="step > 0">{{str + race_str[race]}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Dexterity</label></td><td>
@@ -47,12 +47,12 @@
 							<tr>
 								<td><label>Intelligence</label></td><td>
 								<input ng-model="int" type="number" min="3" max="18" required ng-show="step==0"/>
-								<label ng-show="step > 0">{{int}}</label></td>
+								<label ng-show="step > 0">{{int + race_int[race]}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Wisdom</label></td><td>
 								<input ng-model="wis" type="number" min="3" max="18" required ng-show="step==0"/>
-								<label ng-show="step > 0">{{wis}}</label></td>
+								<label ng-show="step > 0">{{wis + race_wis[race]}}</label></td>
 							</tr>
 							<tr>
 								<td><label>Charisma</label></td><td>
@@ -71,6 +71,20 @@
 				</form>
 				<div class="span3">
 					<form name="raceForm" ng-show="step >= 1">
+						<table>
+							<tr>
+								<td><label>Size</label></td><td><label>{{size[race]}}</td>
+							</tr>
+							<tr>
+								<td><label>Speed</label></td><td><label>{{speed[race]}}</td>
+							</tr>
+							<tr>
+								<td><label>Languages</label></td><td><label>{{languages[race].join(', ')}}</td>
+							</tr>
+							<tr>
+								<td><label>Race Features</label></td><td><label>{{race_features[race].join(', ')}}</label></td>
+							</tr>
+							</table>
 						Race:
 						<span ng-show="step > 1">{{race}}</span>
 						<select ng-model="race" ng-change="changeRace()" required ng-show="step == 1">
@@ -80,6 +94,7 @@
 							<option value="halfling">Halfling</option>
 							<option value="human">Human</option>
 						</select>
+						<br/>
 						<button class="btn btn-success" ng-click="next()" ng-show="raceForm.$valid && step==1">
 							<i class="icon-forward icon-white"></i> Next
 						</button>
